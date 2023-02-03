@@ -1,0 +1,21 @@
+<div *ngIf="books?.length == 0" class="w3-row w3-grayscale" >
+    <div class="w3-col l3 s6">
+        <p>No books available</p>
+    </div>
+</div>
+
+<div *ngIf="books" class="w3-row" >
+    <div *ngFor="let book of books" class="w3-col l3 s6" >
+        <div class="w3-container">
+            <div class="w3-display-container">
+                <img [src]="book.picture" style="width:100%">
+                <div class="w3-display-middle w3-display-hover">
+                    <button class="w3-button w3-black">Details</button>
+                </div>
+            </div>
+            <p>{{book.title}}</p>
+            <p>{{book.author.fullName}}</p>
+            <p>Genre: {{book.genre}}</p>
+        </div>
+    </div>
+</div>

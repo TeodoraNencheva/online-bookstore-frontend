@@ -1,0 +1,45 @@
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" #mySidebar>
+    <div class="w3-container w3-display-container w3-padding-16">
+        <i (click)="w3_close(mySidebar, myOverlay)"
+            class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+        <h3 class="w3-wide"><b>Online bookstore</b></h3>
+    </div>
+    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+        <a (click)="myAccFunc(genres)" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align"
+            id="myBtn">
+            Books <i class="fa fa-caret-down"></i>
+        </a>
+        <div #genres class="w3-bar-block w3-hide w3-padding-large w3-medium">
+            <a href="#" class="w3-bar-item w3-button">All books</a>
+            <a href="#" class="w3-bar-item w3-button">Novels</a>
+            <a href="#" class="w3-bar-item w3-button">Fantasy</a>
+            <a href="#" class="w3-bar-item w3-button">Science fiction</a>
+            <a href="#" class="w3-bar-item w3-button">For children</a>
+            <a href="#" class="w3-bar-item w3-button">Poetry</a>
+        </div>
+        <a href="#" class="w3-bar-item w3-button">Authors</a>
+        <a (click)="myAccFunc(options)" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align"
+            id="myBtn">
+            Search <i class="fa fa-caret-down"></i>
+        </a>
+        <div #options class="w3-bar-block w3-hide w3-padding-large w3-medium">
+            <a href="#" class="w3-bar-item w3-button">Books</a>
+            <a href="#" class="w3-bar-item w3-button">Authors</a>
+        </div>
+
+        <a href="#" class="w3-bar-item w3-button">Register</a>
+        <a href="#" class="w3-bar-item w3-button">Login</a>
+    </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+    <div class="w3-bar-item w3-padding-24 w3-wide">Online bookstore</div>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right"
+        (click)="w3_open(mySidebar, myOverlay)"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" (click)="w3_close(mySidebar, myOverlay)" style="cursor:pointer"
+    title="close side menu" #myOverlay></div>
