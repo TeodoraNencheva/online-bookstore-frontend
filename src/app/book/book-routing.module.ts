@@ -16,6 +16,10 @@ const routes: Routes = [
         data: {
             title: 'Book details'
         }
+    },
+    {
+        path: 'books/:genre',
+        component: BooksComponent
     }
 
 ];

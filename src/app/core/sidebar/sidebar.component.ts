@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IGenre } from 'src/app/shared/interfaces/genre';
+import { ContentService } from '../services/content.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  genres: IGenre[] | undefined;
 
-  constructor() { }
+  constructor(private contentService: ContentService) { }
 
   ngOnInit(): void {
+    this.fetchGenres();
+  }
+
+  fetchGenres(): void{
+    this.genres = undefined;
+    this.contentService.loadGenres()
+      .subscribe(genres => this.genres = genres);
   }
 
   myAccFunc(demoAcc: HTMLElement) {
