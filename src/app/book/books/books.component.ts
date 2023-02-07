@@ -14,16 +14,15 @@ export class BooksComponent implements OnInit{
 
   constructor(private contentService: ContentService,
     private activatedRoute: ActivatedRoute) {
-    this.fetchBooks();
+    this.activatedRoute.params.subscribe(routeParams => this.fetchBooks(routeParams['genre']));
   }
 
   ngOnInit(): void {
 
   }
 
-  fetchBooks(size: number = 8, page: number = 0): void {
+  fetchBooks(genre: string = '', size: number = 8, page: number = 0): void {
     this.books = undefined;
-    const genre = this.activatedRoute.snapshot.params['genre'];
 
     if (genre) {
       this.contentService.loadBooksByGenre(genre, size, page)
@@ -33,7 +32,6 @@ export class BooksComponent implements OnInit{
         .subscribe(books => this.books = books);
     }
 
-    //this.activatedRoute.params.subscribe(routeParams => this.fetchBooks());
   }
 
 }

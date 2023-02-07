@@ -4,11 +4,11 @@
     </div>
 </div>
 
-<div *ngIf="books" class="w3-row" >
-    <div *ngFor="let book of books" class="w3-col l3 s6" >
+<div *ngIf="books" class="w3-row" style="display: flex; flex-wrap: wrap">
+    <div *ngFor="let book of books" class="w3-col l3 s6">
         <div class="w3-container">
             <div class="w3-display-container">
-                <img [src]="book.picture" style="width:100%">
+                <img [src]="book.picture" style="width:100%;">
                 <div class="w3-display-middle w3-display-hover">
                     <a [routerLink]="['/books', book.id, 'details']" class="w3-button w3-black">Details</a>
                 </div>
