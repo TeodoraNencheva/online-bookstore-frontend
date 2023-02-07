@@ -13,11 +13,11 @@ export class ContentService {
 
   constructor(private http: HttpClient) { }
 
-  loadAllBooks(size: number = 8, page: number = 0) {
+  loadAllBooks(size: number, page: number) {
     return this.http.get<IBookOverview[]>(`${apiUrl}/api/books/all?size=${size}&page=${page}`);
   }
 
-  loadBooksByGenre(genre: string, size: number = 8, page: number = 0) {
+  loadBooksByGenre(genre: string, size: number, page: number) {
     return this.http.get<IBookOverview[]>(`${apiUrl}/api/books/${genre}?size=${size}&page=${page}`);
   }
 

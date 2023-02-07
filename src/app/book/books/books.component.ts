@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
 import { IBookOverview } from 'src/app/shared/interfaces/book';
 
@@ -8,22 +8,38 @@ import { IBookOverview } from 'src/app/shared/interfaces/book';
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
 })
-export class BooksComponent implements OnInit{
+export class BooksComponent implements OnInit {
 
   books: IBookOverview[] | undefined;
+  isFirst = false;
+  genre = '';
+  size = 8;
+  page = 0;
 
   constructor(private contentService: ContentService,
-    private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.params.subscribe(routeParams => this.fetchBooks(routeParams['genre']));
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
+
+    this.activatedRoute.params.subscribe(() => this.showBooks());
+    this.activatedRoute.queryParams.subscribe(() => this.showBooks());
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
 
+  showBooks() {
+    this.setProperties();
+    this.fetchBooks(this.genre, this.size, this.page);
   }
 
-  fetchBooks(genre: string = '', size: number = 8, page: number = 0): void {
+  setProperties(): void {
     this.books = undefined;
+    this.genre = this.activatedRoute.snapshot.params['genre'];
+    this.size = !this.activatedRoute.snapshot.queryParams['size'] ? 8 : this.activatedRoute.snapshot.queryParams['size'];
+    this.page = !this.activatedRoute.snapshot.queryParams['page'] ? 0 : this.activatedRoute.snapshot.queryParams['page'];
+    this.isFirst = this.page == 0;
+  }
 
+  fetchBooks(genre: string, size: number, page: number): void {
     if (genre) {
       this.contentService.loadBooksByGenre(genre, size, page)
         .subscribe(books => this.books = books);
@@ -31,7 +47,38 @@ export class BooksComponent implements OnInit{
       this.contentService.loadAllBooks(size, page)
         .subscribe(books => this.books = books);
     }
+  }
 
+  navigateToPrevious() {
+    this.setProperties();
+
+    if (this.genre) {
+      this.router.navigate(
+        ['/books', this.genre],
+        { queryParams: { size: this.size, page: this.page - 1 } }
+      );
+    } else {
+      this.router.navigate(
+        ['/all-books'],
+        { queryParams: { size: this.size, page: this.page - 1 } }
+      );
+    }
+  }
+
+  navigateToNext() {
+    this.setProperties();
+
+    if (this.genre) {
+      this.router.navigate(
+        ['/books', this.genre],
+        { queryParams: { size: this.size, page: Number(this.page) + 1 } }
+      );
+    } else {
+      this.router.navigate(
+        ['/all-books'],
+        { queryParams: { size: this.size, page: Number(this.page) + 1 } }
+      );
+    }
   }
 
 }
