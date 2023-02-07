@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterState } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
+import { HeaderService } from 'src/app/core/services/header.service';
 import { IBookOverview } from 'src/app/shared/interfaces/book';
 
 @Component({
@@ -18,8 +19,8 @@ export class BooksComponent implements OnInit {
 
   constructor(private contentService: ContentService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) {
-
+    private router: Router,
+    private headerService: HeaderService) {
     this.activatedRoute.params.subscribe(() => this.showBooks());
     this.activatedRoute.queryParams.subscribe(() => this.showBooks());
   }
@@ -37,6 +38,12 @@ export class BooksComponent implements OnInit {
     this.size = !this.activatedRoute.snapshot.queryParams['size'] ? 8 : this.activatedRoute.snapshot.queryParams['size'];
     this.page = !this.activatedRoute.snapshot.queryParams['page'] ? 0 : this.activatedRoute.snapshot.queryParams['page'];
     this.isFirst = this.page == 0;
+
+    if (this.genre) {
+      this.headerService.setTitle(this.genre);
+    } else {
+      this.headerService.setTitle('All books');
+    }
   }
 
   fetchBooks(genre: string, size: number, page: number): void {

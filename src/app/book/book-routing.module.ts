@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { GenreTitleResolver } from "../shared/resolvers/genre-title-resolver";
 import { BookComponent } from "./book/book.component";
 import { BooksComponent } from "./books/books.component";
 
@@ -13,13 +14,11 @@ const routes: Routes = [
         path: 'books/:bookId/details',
         component: BookComponent,
         title: 'Book details',
-        data: {
-            title: 'Book details'
-        }
     },
     {
         path: 'books/:genre',
-        component: BooksComponent
+        component: BooksComponent,
+        title: GenreTitleResolver
     }
 
 ];

@@ -10,10 +10,7 @@ const routes: Routes = [{
 {
   path: 'all-books',
   component: BooksComponent,
-  title: 'All books',
-  data: {
-    title: 'All books'
-  } 
+  title: 'All books'
 }];
 
 @NgModule({
