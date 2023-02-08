@@ -44,7 +44,7 @@ export class BooksComponent implements OnInit {
     this.checkIfLast(this.genre);
 
     if (this.genre) {
-      this.headerService.setTitle(this.genre);
+      this.headerService.setTitle(this.setPascalCaseTitle(this.genre));
     } else {
       this.headerService.setTitle('All books');
     }
@@ -100,8 +100,13 @@ export class BooksComponent implements OnInit {
         .subscribe(value => this.isLast = currentCount >= value);
     } else {
       this.contentService.loadAllBooksCount()
-        .subscribe(value => this.isLast = currentCount >= value;);
+        .subscribe(value => this.isLast = currentCount >= value);
     }
 
+  }
+
+  setPascalCaseTitle(text: string): string {
+    return text.replace(/\w+/g,
+      function (w) { return w[0].toUpperCase() + w.slice(1).toLowerCase(); });
   }
 }
