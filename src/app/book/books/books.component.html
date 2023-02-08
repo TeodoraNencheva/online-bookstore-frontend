@@ -21,4 +21,4 @@
 </div>
 
 <button (click)="navigateToPrevious()" [disabled]="isFirst" class="w3-button w3-black">Previous</button>
-<button (click)="navigateToNext()" class="w3-button w3-black">Next</button>
+<button (click)="navigateToNext()" [disabled]="isLast" class="w3-button w3-black">Next</button>

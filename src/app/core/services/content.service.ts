@@ -21,6 +21,14 @@ export class ContentService {
     return this.http.get<IBookOverview[]>(`${apiUrl}/api/books/${genre}?size=${size}&page=${page}`);
   }
 
+  loadBooksCountByGenre(genre: string) {
+    return this.http.get<number>(`${apiUrl}/api/books/${genre}/count`);
+  }
+
+  loadAllBooksCount() {
+    return this.http.get<number>(`${apiUrl}/api/books/all/count`);
+  }
+
   loadBook(id: string) {
     return this.http.get<IBookDetails>(`${apiUrl}/api/books/${id}/details`);
   }
