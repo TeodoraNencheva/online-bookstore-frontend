@@ -17,6 +17,7 @@ export class BooksComponent implements OnInit {
   genre = '';
   size = 8;
   page = 0;
+  authorId: number | undefined = undefined;
 
   constructor(private contentService: ContentService,
     private activatedRoute: ActivatedRoute,
@@ -32,14 +33,15 @@ export class BooksComponent implements OnInit {
 
   showBooks() {
     this.setProperties();
-    this.fetchBooks(this.genre, this.size, this.page);
+    this.fetchBooks(this.genre, this.size, this.page, this.authorId);
   }
 
   setProperties(): void {
     this.books = undefined;
     this.genre = this.activatedRoute.snapshot.params['genre'];
-    this.size = !this.activatedRoute.snapshot.queryParams['size'] ? 8 : this.activatedRoute.snapshot.queryParams['size'];
-    this.page = !this.activatedRoute.snapshot.queryParams['page'] ? 0 : this.activatedRoute.snapshot.queryParams['page'];
+    this.size = this.activatedRoute.snapshot.queryParams['size'] || 8;
+    this.page = this.activatedRoute.snapshot.queryParams['page'] || 0;
+    this.authorId = this.activatedRoute.snapshot.queryParams['authorId'] || undefined;
     this.isFirst = this.page == 0;
     this.checkIfLast(this.genre);
 
@@ -50,11 +52,26 @@ export class BooksComponent implements OnInit {
     }
   }
 
-  fetchBooks(genre: string, size: number, page: number): void {
+  fetchBooks(genre: string, size: number, page: number, authorId: number | undefined): void {
     if (genre) {
       this.contentService.loadBooksByGenre(genre, size, page)
         .subscribe(books => this.books = books);
-    } else {
+    } else if (authorId) {
+      this.contentService.loadBooksByAuthor(authorId)
+        .subscribe({
+          next: (books) => {
+            this.books = books;
+            this.isFirst = true;
+            this.isLast = true;
+            this.headerService.setTitle('All books by ' + this.books.at(0)?.author.fullName);
+          },
+          error: () => {
+            this.headerService.setTitle('Author not found');
+            this.router.navigate(['author-not-found']);
+          }
+        });
+    }
+    else {
       this.contentService.loadAllBooks(size, page)
         .subscribe(books => this.books = books);
     }
@@ -70,7 +87,7 @@ export class BooksComponent implements OnInit {
       );
     } else {
       this.router.navigate(
-        ['/all-books'],
+        ['/books'],
         { queryParams: { size: this.size, page: this.page - 1 } }
       );
     }
@@ -86,7 +103,7 @@ export class BooksComponent implements OnInit {
       );
     } else {
       this.router.navigate(
-        ['/all-books'],
+        ['/books'],
         { queryParams: { size: this.size, page: Number(this.page) + 1 } }
       );
     }

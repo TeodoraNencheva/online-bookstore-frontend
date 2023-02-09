@@ -14,10 +14,10 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     SharedModule,
-    BookModule
+    BookModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

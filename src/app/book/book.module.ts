@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BooksComponent } from './books/books.component';
 import { BookComponent } from './book/book.component';
 import { CommonModule } from '@angular/common';
-import { BookRouingModule } from './book-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,7 @@ import { BookRouingModule } from './book-routing.module';
   ],
   imports: [
     CommonModule,
-    BookRouingModule
+    RouterModule
   ]
 })
 export class BookModule { }

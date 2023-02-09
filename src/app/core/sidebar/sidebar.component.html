@@ -11,7 +11,7 @@
             Books <i class="fa fa-caret-down"></i>
         </a>
         <div #genresList class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a routerLink="/all-books" class="w3-bar-item w3-button">All books</a>
+            <a routerLink="/books" class="w3-bar-item w3-button">All books</a>
             <a class="w3-bar-item w3-button" *ngFor="let genre of genres" [routerLink]="['/books', genre.name]">{{genre.name}}</a>
         </div>
         <a href="#" class="w3-bar-item w3-button">Authors</a>
