@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IBookDetails, IBookOverview } from 'src/app/shared/interfaces/book';
 import { environment } from 'src/environments/environment';
 import { IGenre } from 'src/app/shared/interfaces/genre';
+import { IAuthorOverview } from 'src/app/shared/interfaces/author';
 
 const apiUrl = environment.apiUrl;
 
@@ -39,5 +40,13 @@ export class ContentService {
 
   loadGenres() {
     return this.http.get<IGenre[]>(`${apiUrl}/api/books/all-genres`);
+  }
+
+  loadAuthors(size: number, page: number) {
+    return this.http.get<IAuthorOverview[]>(`${apiUrl}/api/authors?size=${size}&page=${page}`);
+  }
+
+  loadAuthorsCount() {
+    return this.http.get<number>(`${apiUrl}/api/authors/count`);
   }
 }

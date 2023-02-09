@@ -13,9 +13,9 @@
                     <a [routerLink]="['/books', book.id, 'details']" class="w3-button w3-black">Details</a>
                 </div>
             </div>
-            <p>{{book.title}}</p>
+            <p><a [routerLink]="['/books', book.id, 'details']">{{book.title}}</a></p>
             <p>{{book.author.fullName}}</p>
-            <p>Genre: {{book.genre}}</p>
+            <p>Genre: <a [routerLink]="['/books', book.genre]">{{book.genre}}</a></p>
         </div>
     </div>
 </div>

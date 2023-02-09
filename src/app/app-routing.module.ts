@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthorComponent } from './author/author/author.component';
+import { AuthorsComponent } from './author/authors/authors.component';
 import { BookComponent } from './book/book/book.component';
 import { BooksComponent } from './book/books/books.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
@@ -14,7 +16,10 @@ const routes: Routes = [{
   path: 'books',
   children: [
     {
-      path: '', pathMatch: 'full', component: BooksComponent
+      path: '', 
+      pathMatch: 'full', 
+      title: 'All books',
+      component: BooksComponent
     },
     {
       path: ':bookId/details',
@@ -25,6 +30,22 @@ const routes: Routes = [{
       path: ':genre',
       component: BooksComponent,
       title: GenreTitleResolver
+    }
+  ]
+},
+{
+  path: 'authors',
+  children: [
+    {
+      path: '',
+      pathMatch: 'full',
+      title: 'Authors',
+      component: AuthorsComponent
+    },
+    {
+      path: ':id',
+      title: 'Author details',
+      component: AuthorComponent
     }
   ]
 },

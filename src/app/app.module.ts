@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -17,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule,
     BookModule,
+    AuthorModule,
     AppRoutingModule
   ],
   providers: [],

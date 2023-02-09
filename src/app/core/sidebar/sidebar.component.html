@@ -6,7 +6,7 @@
         <h3 class="w3-wide asLink" routerLink="/"><b>Online bookstore</b></h3>
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-        <a (click)="myAccFunc(genresList)" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align"
+        <a (click)="myAccFunc(genresList)" class="w3-button w3-block w3-white w3-left-align"
             id="myBtn">
             Books <i class="fa fa-caret-down"></i>
         </a>
@@ -14,7 +14,7 @@
             <a routerLink="/books" class="w3-bar-item w3-button">All books</a>
             <a class="w3-bar-item w3-button" *ngFor="let genre of genres" [routerLink]="['/books', genre.name]">{{genre.name}}</a>
         </div>
-        <a href="#" class="w3-bar-item w3-button">Authors</a>
+        <a [routerLink]="['/authors']" class="w3-bar-item w3-button">Authors</a>
         <a (click)="myAccFunc(options)" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align"
             id="myBtn">
             Search <i class="fa fa-caret-down"></i>
