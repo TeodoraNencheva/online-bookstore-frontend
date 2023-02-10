@@ -4,8 +4,10 @@ import { IBookDetails, IBookOverview } from 'src/app/shared/interfaces/book';
 import { environment } from 'src/environments/environment';
 import { IGenre } from 'src/app/shared/interfaces/genre';
 import { IAuthorDetails, IAuthorOverview } from 'src/app/shared/interfaces/author';
+import { IAuthResponse } from 'src/app/shared/interfaces/auth';
 
 const apiUrl = environment.apiUrl;
+//const apiUrl = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +54,9 @@ export class ContentService {
 
   loadAuthorDetails(id: number) {
     return this.http.get<IAuthorDetails>(`${apiUrl}/api/authors/${id}`);
+  }
+
+  login(data: { username: string, password: string }) {
+    return this.http.post<IAuthResponse>(`${apiUrl}/api/auth/login`, data);
   }
 }
