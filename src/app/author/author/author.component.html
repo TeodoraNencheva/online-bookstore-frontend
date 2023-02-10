@@ -1,1 +1,12 @@
-<p>author works!</p>
+<div class="w3-row w3-padding-64" id="about">
+    <div class="w3-col m6 w3-padding-large w3-hide-small">
+        <img [src]="author?.picture" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600"
+            height="750">
+    </div>
+
+    <div class="w3-col m6 w3-padding-large">
+        <h1 class="w3-center">{{author?.fullName}}</h1><br>
+        <h5 class="w3-center">See <a [routerLink]="['/books']" [queryParams]="{authorId: author?.id}">books</a> by {{author?.fullName}}</h5>
+        <p class="w3-large">{{author?.biography}}</p>
+    </div>
+</div>

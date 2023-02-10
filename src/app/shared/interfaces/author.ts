@@ -3,3 +3,10 @@ export interface IAuthorOverview {
     fullName: string;
     picture: string;
 }
+
+export interface IAuthorDetails {
+    id: number;
+    fullName: string;
+    biography: string;
+    picture: string;
+}

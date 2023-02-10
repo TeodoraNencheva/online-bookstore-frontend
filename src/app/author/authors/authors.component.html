@@ -14,6 +14,7 @@
                 </div>
             </div>
             <p><a [routerLink]="['/authors', author.id]">{{author.fullName}}</a></p>
+            <p><a [routerLink]="['/books']" [queryParams]="{authorId: author.id}">Books by {{author.fullName}}</a></p>
         </div>
     </div>
 </div>

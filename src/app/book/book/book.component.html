@@ -6,7 +6,7 @@
 
     <div class="w3-col m6 w3-padding-large">
         <h1 class="w3-center">{{book?.title}}</h1><br>
-        <h5 class="w3-center">By {{book?.author?.fullName}}</h5>
+        <h5 class="w3-center">By <a [routerLink]="['/authors', book?.author?.id]">{{book?.author?.fullName}}</a></h5>
         <h5 class="w3-center">Genre: <a [routerLink]="['/books', book?.genre]">{{book?.genre}}</a></h5>
         <h5 class="w3-center">Year of publication: {{book?.yearOfPublication}}</h5>
         <h5 class="w3-center">Price: {{book?.price}}$</h5>

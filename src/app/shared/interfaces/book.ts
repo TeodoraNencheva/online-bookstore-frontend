@@ -2,6 +2,7 @@ export interface IBookOverview {
     id: number;
     title: string;
     author: {
+        id: number;
         firstName: String,
         lastName: String,
         biography: String,
@@ -19,6 +20,7 @@ export interface IBookDetails {
     id: number;
     title: string;
     author: {
+        id: number;
         firstName: String,
         lastName: String,
         biography: String,
