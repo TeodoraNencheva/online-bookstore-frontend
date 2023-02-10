@@ -4,7 +4,7 @@ import { IBookDetails, IBookOverview } from 'src/app/shared/interfaces/book';
 import { environment } from 'src/environments/environment';
 import { IGenre } from 'src/app/shared/interfaces/genre';
 import { IAuthorDetails, IAuthorOverview } from 'src/app/shared/interfaces/author';
-import { IAuthResponse } from 'src/app/shared/interfaces/auth';
+import { IAuthResponse, IRegisterDTO } from 'src/app/shared/interfaces/auth';
 
 const apiUrl = environment.apiUrl;
 //const apiUrl = 'http://localhost:8080';
@@ -58,5 +58,13 @@ export class ContentService {
 
   login(data: { username: string, password: string }) {
     return this.http.post<IAuthResponse>(`${apiUrl}/api/auth/login`, data);
+  }
+
+  register(data: IRegisterDTO) {
+    return this.http.post(`${apiUrl}/api/auth/register`, data);
+  }
+
+  confirmRegistration(token: string) {
+    return this.http.get(`${apiUrl}/api/auth/register/verify?token=${token}`)
   }
 }

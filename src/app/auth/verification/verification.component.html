@@ -1,0 +1,7 @@
+<div class="alert alert-success" *ngIf="success">
+    Congratulations! Your registration is successfully confirmed. You can now login in your account.
+</div>
+
+<div class="alert alert-danger" *ngIf="!success">
+    Oops! It seems your verification token is incorrect or expired. Please make sure to copy the entire URL in the address bar.
+</div>

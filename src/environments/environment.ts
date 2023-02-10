@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://powerful-beach-00895.herokuapp.com"
+  apiUrl: "https://powerful-beach-00895.herokuapp.com",
+  baseUrl: "http://localhost:4200"
 };
 
 /*

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { VerificationComponent } from './auth/verification/verification.component';
 import { AuthorComponent } from './author/author/author.component';
 import { AuthorsComponent } from './author/authors/authors.component';
 import { BookComponent } from './book/book/book.component';
@@ -58,12 +60,21 @@ const routes: Routes = [{
       path: 'login',
       component: LoginComponent,
       title: 'Login'
-    }, 
+    },
     {
       path: 'logout',
       component: LogoutComponent
+    },
+    {
+      path: 'register',
+      component: RegisterComponent,
+      title: 'Register'
+    },
+    {
+      path: 'register-verify',
+      component: VerificationComponent,
+      title: 'Verify registration'
     }
-
   ]
 },
 {

@@ -1,0 +1,56 @@
+<form action="" method="post" #form="ngForm" (ngSubmit)="onSubmit(form, passwords)" *ngIf="!success">
+
+    <div class="container">
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="john.doe@example.com" name="email" ngModel #email="ngModel" required email>
+        <div class="alert alert-danger" *ngIf="email.errors && email.dirty && email.touched">
+            Please enter a valid email address.
+        </div>
+
+        <label for="email"><b>First name</b></label>
+        <input type="text" placeholder="John" name="firstName" ngModel #firstName="ngModel" required pattern="\w{2,20}">
+        <div class="alert alert-danger" *ngIf="firstName.errors && firstName.dirty && firstName.touched">
+            First name should be between 2 and 20 symbols.
+        </div>
+
+        <label for="email"><b>Last name</b></label>
+        <input type="text" placeholder="Doe" name="lastName" ngModel #lastName="ngModel" required pattern="\w{2,20}">
+        <div class="alert alert-danger" *ngIf="lastName.errors && lastName.dirty && lastName.touched">
+            Last name should be between 2 and 20 symbols.
+        </div>
+
+        <div ngModelGroup="passwords" [appSameValue] #passwords="ngModelGroup">
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" minlength="5" required name="password" id="password" placeholder="******" ngModel
+                #password #passwordModel="ngModel">
+
+            <div class="alert alert-danger"
+                *ngIf="passwordModel.errors && passwordModel.dirty && passwordModel.touched">
+                Password must be between at least 5 characters.
+            </div>
+
+
+            <label for="confirmPassword"><b>Confirm password</b></label>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="******" ngModel required
+                [appSameValue]="password" #confirmPassword="ngModel">
+
+        </div>
+        <div class="alert alert-danger" *ngIf="passwords.errors && confirmPassword.dirty && confirmPassword.touched">
+            Passwords don't match!
+        </div>
+
+        <div class="alert alert-danger" *ngIf="attemptFailed">
+            Please try again.
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Register</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+    </div>
+</form>
+
+<div class="alert alert-success" *ngIf="success">
+    Congratulations! You are successfully registered. Please go to your email to confirm your registration!
+</div>
