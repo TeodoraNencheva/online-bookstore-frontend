@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 import { IGenre } from 'src/app/shared/interfaces/genre';
 import { ContentService } from '../services/content.service';
 
@@ -9,14 +10,18 @@ import { ContentService } from '../services/content.service';
 })
 export class SidebarComponent implements OnInit {
   genres: IGenre[] | undefined;
+  get isLoggedIn() {
+    return this.authService.isLogged;
+  }
 
-  constructor(private contentService: ContentService) { }
+  constructor(private contentService: ContentService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.fetchGenres();
   }
 
-  fetchGenres(): void{
+  fetchGenres(): void {
     this.genres = undefined;
     this.contentService.loadGenres()
       .subscribe(genres => this.genres = genres);

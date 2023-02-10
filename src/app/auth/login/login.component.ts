@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
 import { HeaderService } from 'src/app/core/services/header.service';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private contentService: ContentService,
     private headerService: HeaderService,
-    private authService: AuthService) {
+    private router: Router) {
     this.headerService.setTitle('Login');
   }
 
@@ -27,9 +27,8 @@ export class LoginComponent implements OnInit {
     const value: { username: string; password: string } = form.value;
     this.contentService.login(value).subscribe({
       next: response => {
-        this.authService.isLogged = true;
-        this.authService.jwt = response.token;
-        console.log(response.token);
+        localStorage.setItem('jwt', response.token)
+        this.router.navigate(['/']);
       },
       error: () => {
         this.attemptFailed = true;

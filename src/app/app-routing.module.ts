@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 import { AuthorComponent } from './author/author/author.component';
 import { AuthorsComponent } from './author/authors/authors.component';
 import { BookComponent } from './book/book/book.component';
@@ -17,8 +18,8 @@ const routes: Routes = [{
   path: 'books',
   children: [
     {
-      path: '', 
-      pathMatch: 'full', 
+      path: '',
+      pathMatch: 'full',
       title: 'All books',
       component: BooksComponent
     },
@@ -51,9 +52,19 @@ const routes: Routes = [{
   ]
 },
 {
-  path: 'login',
-  component: LoginComponent,
-  title: 'Login'
+  path: 'auth',
+  children: [
+    {
+      path: 'login',
+      component: LoginComponent,
+      title: 'Login'
+    }, 
+    {
+      path: 'logout',
+      component: LogoutComponent
+    }
+
+  ]
 },
 {
   path: '**',

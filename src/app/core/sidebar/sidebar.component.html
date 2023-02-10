@@ -6,33 +6,44 @@
         <h3 class="w3-wide asLink" routerLink="/"><b>Online bookstore</b></h3>
     </div>
     <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-        <a (click)="myAccFunc(genresList)" class="w3-button w3-block w3-white w3-left-align"
-            id="myBtn">
+        <a (click)="myAccFunc(genresList)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
             Books <i class="fa fa-caret-down"></i>
         </a>
         <div #genresList class="w3-bar-block w3-hide w3-padding-large w3-medium">
             <a routerLink="/books" class="w3-bar-item w3-button">All books</a>
-            <a class="w3-bar-item w3-button" *ngFor="let genre of genres" [routerLink]="['/books', genre.name]">{{genre.name}}</a>
+            <a class="w3-bar-item w3-button" *ngFor="let genre of genres"
+                [routerLink]="['/books', genre.name]">{{genre.name}}</a>
         </div>
         <a [routerLink]="['/authors']" class="w3-bar-item w3-button">Authors</a>
-        <a (click)="myAccFunc(options)" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align"
+        <a (click)="myAccFunc(options)" class="w3-button w3-block w3-white w3-left-align"
             id="myBtn">
             Search <i class="fa fa-caret-down"></i>
         </a>
         <div #options class="w3-bar-block w3-hide w3-padding-large w3-medium">
-            <a href="#" class="w3-bar-item w3-button">Books</a>
-            <a href="#" class="w3-bar-item w3-button">Authors</a>
+            <a class="w3-bar-item w3-button">Books</a>
+            <a class="w3-bar-item w3-button">Authors</a>
         </div>
 
-        <a href="#" class="w3-bar-item w3-button">Register</a>
-        <a href="#" class="w3-bar-item w3-button">Login</a>
+        <ng-template #loggedOutTemplate>
+            <a routerLink="/auth/login" class="w3-bar-item w3-button">Login</a>
+            <a routerLink="/auth/register" class="w3-bar-item w3-button">Register</a>
+        </ng-template>
+
+        <ng-template #loggedInTemplate>
+            <a routerLink="/cart" class="w3-bar-item w3-button">Cart</a>
+            <a routerLink="/my-orders" class="w3-bar-item w3-button">My orders</a>
+            <a routerLink="/auth/logout" class="w3-bar-item w3-button">Logout</a>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="isLoggedIn ? loggedInTemplate : loggedOutTemplate"></ng-container>
+
     </div>
 </nav>
 
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
     <div class="w3-bar-item w3-padding-24 w3-wide asLink" routerLink="/">Online bookstore</div>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right"
+    <a class="w3-bar-item w3-button w3-padding-24 w3-right"
         (click)="w3_open(mySidebar, myOverlay)"><i class="fa fa-bars"></i></a>
 </header>
 
