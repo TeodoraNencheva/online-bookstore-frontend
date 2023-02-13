@@ -36,4 +36,7 @@ export class CartComponent implements OnInit {
     });
   }
 
+  removeFromCart(id: number) {
+    this.contentService.removeFromCart(id).subscribe(() => this.fetchCart());
+  }
 }

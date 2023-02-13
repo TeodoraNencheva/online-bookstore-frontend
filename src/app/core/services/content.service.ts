@@ -6,8 +6,7 @@ import { IGenre } from 'src/app/shared/interfaces/genre';
 import { IAuthorDetails, IAuthorOverview } from 'src/app/shared/interfaces/author';
 import { IAuthResponse, IRegisterDTO } from 'src/app/shared/interfaces/auth';
 
-//const apiUrl = environment.apiUrl;
-const apiUrl = 'http://localhost:8080';
+const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -70,5 +69,13 @@ export class ContentService {
 
   loadCart() {
     return this.http.get<IBookInCart[]>(`${apiUrl}/api/cart`);
+  }
+
+  addToCart(bookId: number, quantity: number) {
+    return this.http.post(`${apiUrl}/api/cart`, { bookId, quantity });
+  }
+
+  removeFromCart(bookId: number) {
+    return this.http.delete(`${apiUrl}/api/cart/${bookId}`);
   }
 }

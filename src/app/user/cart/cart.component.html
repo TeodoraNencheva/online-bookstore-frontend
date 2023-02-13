@@ -11,6 +11,7 @@
                     <th scope="col">Quantity</th>
                     <th scope="col">Unit price</th>
                     <th scope="col">Total</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <td>{{item.quantity}}</td>
                     <td>{{item.price}}$</td>
                     <td>{{item.quantity * item.price}}$</td>
+                    <td><button (click)="removeFromCart(item.id)">X</button></td>
                 </tr>
             </tbody>
         </table>

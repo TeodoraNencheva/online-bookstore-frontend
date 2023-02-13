@@ -3,3 +3,10 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+button {
+    background-color: red;
+    color: white;
+    border: none;
+    font-weight: 1000;
+}

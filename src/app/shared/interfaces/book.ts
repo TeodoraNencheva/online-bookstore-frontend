@@ -45,3 +45,8 @@ export interface IBookInCart {
     quantity: number;
     price: number;
 }
+
+export interface IAddBookToCart {
+    bookId: number;
+    quantity: number;
+}

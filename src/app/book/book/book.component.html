@@ -10,6 +10,20 @@
         <h5 class="w3-center">Genre: <a [routerLink]="['/books', book?.genre]">{{book?.genre}}</a></h5>
         <h5 class="w3-center">Year of publication: {{book?.yearOfPublication}}</h5>
         <h5 class="w3-center">Price: {{book?.price}}$</h5>
+        <div class="w3-center" *ngIf="isLoggedIn" id="buy">
+            <div>
+                <button (click)="decreaseQuantity(quantity)">-</button>
+                <input type="number" value="1" min="1" #quantity>
+                <button (click)="increaseQuantity(quantity)">+</button>
+            </div>
+            <button (click)="addToCart(book?.id, quantity.value)">Add to cart</button>
+        </div>
+
+        <div class="alert alert-success alert-dismissible" *ngIf="bookAdded" #alert>
+            <strong>Success!</strong> This alert box could indicate a successful or positive action.
+            <p (click)="closeAlert()">X</p>
+        </div>
+
         <p class="w3-large">{{book?.summary}}</p>
     </div>
 </div>
