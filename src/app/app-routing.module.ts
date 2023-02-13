@@ -11,6 +11,8 @@ import { BooksComponent } from './book/books/books.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { GenreTitleResolver } from './shared/resolvers/genre-title-resolver';
 import { CartComponent } from './user/cart/cart.component';
+import { OrderComponent } from './user/order/order.component';
+import { OrdersComponent } from './user/orders/orders.component';
 
 const routes: Routes = [{
   path: '',
@@ -85,6 +87,17 @@ const routes: Routes = [{
       path: 'cart',
       component: CartComponent,
       title: 'My cart'
+    },
+    {
+      path: 'orders',
+      pathMatch: 'full',
+      component: OrdersComponent,
+      title: 'My orders'
+    },
+    {
+      path: 'orders/:id/details',
+      component: OrderComponent,
+      title: 'Order details'
     }
   ]
 },

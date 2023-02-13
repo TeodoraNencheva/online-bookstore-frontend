@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class LogoutComponent implements OnInit {
 
   constructor(private router: Router) {
-    localStorage.removeItem('jwt');
+    sessionStorage.removeItem('jwt');
     this.router.navigate(['/']);
   }
 

@@ -39,4 +39,12 @@ export class CartComponent implements OnInit {
   removeFromCart(id: number) {
     this.contentService.removeFromCart(id).subscribe(() => this.fetchCart());
   }
+
+  emptyCart() {
+    this.contentService.emptyCart().subscribe(() => this.fetchCart());
+  }
+
+  sendOrder() {
+    this.contentService.sendOrder().subscribe(() => this.fetchCart());
+  }
 }

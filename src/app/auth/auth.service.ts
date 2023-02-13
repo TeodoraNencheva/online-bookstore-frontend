@@ -12,7 +12,7 @@ export class AuthService {
   }
 
   public get jwt(): string | null {
-    return localStorage.getItem('jwt');
+    return sessionStorage.getItem('jwt');
   }
 
 }

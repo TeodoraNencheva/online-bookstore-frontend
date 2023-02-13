@@ -4,9 +4,14 @@
     justify-content: center;
 }
 
-button {
+table button {
     background-color: red;
     color: white;
     border: none;
     font-weight: 1000;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-between;
 }

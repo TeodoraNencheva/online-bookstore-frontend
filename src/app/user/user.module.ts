@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { CartComponent } from './cart/cart.component';
 import { RouterModule } from '@angular/router';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderComponent } from './order/order.component';
 
 
 
 @NgModule({
   declarations: [
-    CartComponent
+    CartComponent,
+    OrdersComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    DatePipe
   ]
 })
 export class UserModule { }

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { IGenre } from 'src/app/shared/interfaces/genre';
 import { IAuthorDetails, IAuthorOverview } from 'src/app/shared/interfaces/author';
 import { IAuthResponse, IRegisterDTO } from 'src/app/shared/interfaces/auth';
+import { IOrderDetails, IOrderOverview } from 'src/app/shared/interfaces/order';
 
 const apiUrl = environment.apiUrl;
 
@@ -77,5 +78,21 @@ export class ContentService {
 
   removeFromCart(bookId: number) {
     return this.http.delete(`${apiUrl}/api/cart/${bookId}`);
+  }
+
+  emptyCart() {
+    return this.http.delete(`${apiUrl}/api/cart`);
+  }
+
+  sendOrder() {
+    return this.http.post(`${apiUrl}/api/cart/confirm`, {});
+  }
+
+  loadLoggedUsersOrders() {
+    return this.http.get<IOrderOverview[]>(`${apiUrl}/api/orders`);
+  }
+
+  loadOrderDetails(id: string) {
+    return this.http.get<IOrderDetails>(`${apiUrl}/api/orders/${id}/details`)
   }
 }
