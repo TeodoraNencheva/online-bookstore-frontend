@@ -10,6 +10,7 @@ import { BookComponent } from './book/book/book.component';
 import { BooksComponent } from './book/books/books.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { GenreTitleResolver } from './shared/resolvers/genre-title-resolver';
+import { CartComponent } from './user/cart/cart.component';
 
 const routes: Routes = [{
   path: '',
@@ -74,6 +75,16 @@ const routes: Routes = [{
       path: 'register-verify',
       component: VerificationComponent,
       title: 'Verify registration'
+    }
+  ]
+},
+{
+  path: 'user',
+  children: [
+    {
+      path: 'cart',
+      component: CartComponent,
+      title: 'My cart'
     }
   ]
 },

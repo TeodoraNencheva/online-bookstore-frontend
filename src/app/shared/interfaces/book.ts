@@ -36,3 +36,12 @@ export interface IBookDetails {
     picture: string;
     price: number;
 }
+
+export interface IBookInCart {
+    id: number;
+    title: string;
+    authorId: number;
+    authorFullName: string;
+    quantity: number;
+    price: number;
+}

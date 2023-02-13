@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IBookDetails, IBookOverview } from 'src/app/shared/interfaces/book';
+import { IBookDetails, IBookInCart, IBookOverview } from 'src/app/shared/interfaces/book';
 import { environment } from 'src/environments/environment';
 import { IGenre } from 'src/app/shared/interfaces/genre';
 import { IAuthorDetails, IAuthorOverview } from 'src/app/shared/interfaces/author';
 import { IAuthResponse, IRegisterDTO } from 'src/app/shared/interfaces/auth';
 
-const apiUrl = environment.apiUrl;
-//const apiUrl = 'http://localhost:8080';
+//const apiUrl = environment.apiUrl;
+const apiUrl = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root'
@@ -66,5 +66,9 @@ export class ContentService {
 
   confirmRegistration(token: string) {
     return this.http.get(`${apiUrl}/api/auth/register/verify?token=${token}`)
+  }
+
+  loadCart() {
+    return this.http.get<IBookInCart[]>(`${apiUrl}/api/cart`);
   }
 }

@@ -9,6 +9,8 @@ import { BookModule } from './book/book.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserModule } from './user/user.module';
+import { jwtInterceptorProvider } from './core/interceptors/jwt-interceptor';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BookModule,
     AuthorModule,
     AuthModule,
+    UserModule,
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [jwtInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
