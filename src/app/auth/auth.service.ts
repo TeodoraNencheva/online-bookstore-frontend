@@ -15,4 +15,8 @@ export class AuthService {
     return sessionStorage.getItem('jwt');
   }
 
+  public get isAdmin(): boolean {
+    return sessionStorage.getItem('role') == 'admin';
+  }
+
 }

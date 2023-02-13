@@ -15,8 +15,7 @@
                 [routerLink]="['/books', genre.name]">{{genre.name}}</a>
         </div>
         <a [routerLink]="['/authors']" class="w3-bar-item w3-button">Authors</a>
-        <a (click)="myAccFunc(options)" class="w3-button w3-block w3-white w3-left-align"
-            id="myBtn">
+        <a (click)="myAccFunc(options)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
             Search <i class="fa fa-caret-down"></i>
         </a>
         <div #options class="w3-bar-block w3-hide w3-padding-large w3-medium">
@@ -30,9 +29,18 @@
         </ng-template>
 
         <ng-template #loggedInTemplate>
+            <ng-container *ngTemplateOutlet="isAdmin ? adminTemplate : userTemplate"></ng-container>
+            <a routerLink="/auth/logout" class="w3-bar-item w3-button">Logout</a>
+        </ng-template>
+
+        <ng-template #userTemplate>
             <a routerLink="/user/cart" class="w3-bar-item w3-button">Cart</a>
             <a routerLink="/user/orders" class="w3-bar-item w3-button">My orders</a>
-            <a routerLink="/auth/logout" class="w3-bar-item w3-button">Logout</a>
+        </ng-template>
+
+        <ng-template #adminTemplate>
+            <a routerLink="/add/book" class="w3-bar-item w3-button">Add book</a>
+            <a routerLink="/add/author" class="w3-bar-item w3-button">Add author</a>
         </ng-template>
 
         <ng-container *ngTemplateOutlet="isLoggedIn ? loggedInTemplate : loggedOutTemplate"></ng-container>
@@ -43,8 +51,8 @@
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
     <div class="w3-bar-item w3-padding-24 w3-wide asLink" routerLink="/">Online bookstore</div>
-    <a class="w3-bar-item w3-button w3-padding-24 w3-right"
-        (click)="w3_open(mySidebar, myOverlay)"><i class="fa fa-bars"></i></a>
+    <a class="w3-bar-item w3-button w3-padding-24 w3-right" (click)="w3_open(mySidebar, myOverlay)"><i
+            class="fa fa-bars"></i></a>
 </header>
 
 <!-- Overlay effect when opening sidebar on small screens -->

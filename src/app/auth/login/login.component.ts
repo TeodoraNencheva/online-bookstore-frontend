@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
     const value: { username: string; password: string } = form.value;
     this.contentService.login(value).subscribe({
       next: response => {
-        sessionStorage.setItem('jwt', response.token)
+        sessionStorage.setItem('jwt', response.token);
+        sessionStorage.setItem('role', response.role);
         this.router.navigate(['/']);
       },
       error: () => {

@@ -14,6 +14,10 @@ export class SidebarComponent implements OnInit {
     return this.authService.isLogged;
   }
 
+  get isAdmin() {
+    return this.authService.isAdmin;
+  }
+
   constructor(private contentService: ContentService,
     private authService: AuthService) { }
 

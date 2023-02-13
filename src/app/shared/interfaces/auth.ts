@@ -1,5 +1,6 @@
 export interface IAuthResponse {
-    token: string
+    token: string;
+    role: string;
 }
 
 export interface IRegisterDTO {
