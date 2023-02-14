@@ -50,3 +50,12 @@ export interface IAddBookToCart {
     bookId: number;
     quantity: number;
 }
+
+export interface IAddNewBook {
+    title: string;
+    authorId: number;
+    genreId: number;
+    yearOfPublication: string;
+    summary: string;
+    price: number;
+}

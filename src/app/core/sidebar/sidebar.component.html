@@ -39,8 +39,8 @@
         </ng-template>
 
         <ng-template #adminTemplate>
-            <a routerLink="/add/book" class="w3-bar-item w3-button">Add book</a>
-            <a routerLink="/add/author" class="w3-bar-item w3-button">Add author</a>
+            <a routerLink="/admin/add-book" class="w3-bar-item w3-button">Add book</a>
+            <a routerLink="/admin/add-author" class="w3-bar-item w3-button">Add author</a>
         </ng-template>
 
         <ng-container *ngTemplateOutlet="isLoggedIn ? loggedInTemplate : loggedOutTemplate"></ng-container>

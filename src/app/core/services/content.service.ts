@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IBookDetails, IBookInCart, IBookOverview } from 'src/app/shared/interfaces/book';
+import { IAddNewBook, IBookDetails, IBookInCart, IBookOverview } from 'src/app/shared/interfaces/book';
 import { environment } from 'src/environments/environment';
 import { IGenre } from 'src/app/shared/interfaces/genre';
-import { IAuthorDetails, IAuthorOverview } from 'src/app/shared/interfaces/author';
+import { IAuthorDetails, IAuthorListDTO, IAuthorOverview } from 'src/app/shared/interfaces/author';
 import { IAuthResponse, IRegisterDTO } from 'src/app/shared/interfaces/auth';
 import { IOrderDetails, IOrderOverview } from 'src/app/shared/interfaces/order';
 
@@ -46,6 +46,10 @@ export class ContentService {
 
   loadAuthors(size: number, page: number) {
     return this.http.get<IAuthorOverview[]>(`${apiUrl}/api/authors?size=${size}&page=${page}`);
+  }
+
+  loadAuthorsList() {
+    return this.http.get<IAuthorListDTO[]>(`${apiUrl}/api/authors/list`);
   }
 
   loadAuthorsCount() {
@@ -94,5 +98,15 @@ export class ContentService {
 
   loadOrderDetails(id: string) {
     return this.http.get<IOrderDetails>(`${apiUrl}/api/orders/${id}/details`)
+  }
+
+  addNewBook(book: IAddNewBook, picture: File) {
+    let formData = new FormData();
+    const blobOverrides = new Blob([JSON.stringify(book)], {
+      type: 'application/json',
+    });
+    formData.append('bookModel', blobOverrides);
+    formData.append('picture', picture, picture.name);
+    return this.http.post<IBookDetails>(`${apiUrl}/api/books/add`, formData);
   }
 }

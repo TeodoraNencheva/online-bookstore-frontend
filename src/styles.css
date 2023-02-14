@@ -1,4 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 .w3-sidebar a {
     font-family: "Roboto", sans-serif

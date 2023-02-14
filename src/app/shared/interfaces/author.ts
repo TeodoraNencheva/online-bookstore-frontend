@@ -10,3 +10,8 @@ export interface IAuthorDetails {
     biography: string;
     picture: string;
 }
+
+export interface IAuthorListDTO {
+    id: number;
+    fullName: string;
+}

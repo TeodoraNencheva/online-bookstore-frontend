@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
 import { jwtInterceptorProvider } from './core/interceptors/jwt-interceptor';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { jwtInterceptorProvider } from './core/interceptors/jwt-interceptor';
     AuthorModule,
     AuthModule,
     UserModule,
+    AdminModule,
     AppRoutingModule,
     NgbModule
   ],

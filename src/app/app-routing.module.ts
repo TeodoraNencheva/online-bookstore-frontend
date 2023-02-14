@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddBookComponent } from './admin/add-book/add-book.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -98,6 +99,16 @@ const routes: Routes = [{
       path: 'orders/:id/details',
       component: OrderComponent,
       title: 'Order details'
+    }
+  ]
+},
+{
+  path: 'admin',
+  children: [
+    {
+      path: 'add-book',
+      component: AddBookComponent,
+      title: 'Add new book'
     }
   ]
 },

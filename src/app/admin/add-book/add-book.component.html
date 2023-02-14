@@ -1,0 +1,61 @@
+<form action="" method="post" #form="ngForm" (ngSubmit)="onSubmit(form)" enctype="multipart/form-data">
+
+    <div class="container">
+        <label for="email"><b>Title</b></label>
+        <input type="text" placeholder="Title" name="title" ngModel #title="ngModel" required>
+        <div class="alert alert-danger" *ngIf="title.errors && title.dirty && title.touched">
+            Please enter a valid title.
+        </div>
+
+        <label for="email"><b>Author</b></label>
+        <select name="authorId" class="form-control" ngModel #author="ngModel" required appNotEmptyValue>
+            <option value='' selected>Select an author</option>
+            <option *ngFor="let author of authors" [value]="author.id">{{author.fullName}}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="author.errors && author.dirty && author.touched">
+            Please select an author.
+        </div>
+
+        <label for="email"><b>Genre</b></label>
+        <select name="genreId" class="form-control" ngModel #genre="ngModel" required appNotEmptyValue>
+            <option value='' selected>Select a genre</option>
+            <option *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="genre.errors && genre.dirty && genre.touched">
+            Please select a genre.
+        </div>
+
+        <label for="email"><b>Year of publication</b></label>
+        <input type="text" placeholder="Year of publication" name="yearOfPublication" ngModel
+            #yearOfPublication="ngModel" required>
+        <div class="alert alert-danger"
+            *ngIf="yearOfPublication.errors && yearOfPublication.dirty && yearOfPublication.touched">
+            Please enter a valid year of publication.
+        </div>
+
+        <label for="email"><b>Price</b></label>
+        <input type="number" placeholder="Price" name="price" ngModel #price="ngModel" required>
+        <div class="alert alert-danger" *ngIf="price.errors && price.dirty && price.touched">
+            Please enter a valid price.
+        </div>
+
+
+        <label for="email"><b>Summary</b></label>
+        <textarea placeholder="Summary" name="summary" ngModel #summary="ngModel" required></textarea>
+        <div class="alert alert-danger" *ngIf="summary.errors && summary.dirty && summary.touched">
+            Please enter a valid summary.
+        </div>
+
+        <label for="email"><b>Picture</b></label>
+        <input type="file" placeholder="Picture" name="picture" ngModel #picture="ngModel"
+            (change)="selectPicture($event)"><br>
+        <div class="alert alert-danger" *ngIf="picture.errors && picture.dirty && picture.touched">
+            Please select a picture.
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Add book</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+    </div>
+</form>
