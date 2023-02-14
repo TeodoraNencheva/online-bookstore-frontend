@@ -15,3 +15,9 @@ export interface IAuthorListDTO {
     id: number;
     fullName: string;
 }
+
+export interface IAddNewAuthor {
+    firstName: string;
+    lastName: string;
+    biography: string;
+}

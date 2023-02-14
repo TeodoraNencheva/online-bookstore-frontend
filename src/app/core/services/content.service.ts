@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { IAddNewBook, IBookDetails, IBookInCart, IBookOverview } from 'src/app/shared/interfaces/book';
 import { environment } from 'src/environments/environment';
 import { IGenre } from 'src/app/shared/interfaces/genre';
-import { IAuthorDetails, IAuthorListDTO, IAuthorOverview } from 'src/app/shared/interfaces/author';
+import { IAddNewAuthor, IAuthorDetails, IAuthorListDTO, IAuthorOverview } from 'src/app/shared/interfaces/author';
 import { IAuthResponse, IRegisterDTO } from 'src/app/shared/interfaces/auth';
 import { IOrderDetails, IOrderOverview } from 'src/app/shared/interfaces/order';
 
@@ -108,5 +108,15 @@ export class ContentService {
     formData.append('bookModel', blobOverrides);
     formData.append('picture', picture, picture.name);
     return this.http.post<IBookDetails>(`${apiUrl}/api/books/add`, formData);
+  }
+
+  addNewAuthor(author: IAddNewAuthor, picture: File) {
+    let formData = new FormData();
+    const blobOverrides = new Blob([JSON.stringify(author)], {
+      type: 'application/json',
+    });
+    formData.append('authorModel', blobOverrides);
+    formData.append('picture', picture, picture.name);
+    return this.http.post<IAuthorDetails>(`${apiUrl}/api/authors/add`, formData);
   }
 }

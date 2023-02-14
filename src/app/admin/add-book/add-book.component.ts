@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
 import { HeaderService } from 'src/app/core/services/header.service';
