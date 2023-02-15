@@ -11,6 +11,7 @@ import { AuthorsComponent } from './author/authors/authors.component';
 import { BookComponent } from './book/book/book.component';
 import { BooksComponent } from './book/books/books.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
+import { AdminActivate } from './shared/guards/admin.activate';
 import { AuthActivate } from './shared/guards/auth.activate';
 import { GenreTitleResolver } from './shared/resolvers/genre-title-resolver';
 import { CartComponent } from './user/cart/cart.component';
@@ -137,7 +138,7 @@ const routes: Routes = [{
   children: [
     {
       path: 'add-book',
-      canActivate: [AuthActivate],
+      canActivate: [AuthActivate, AdminActivate],
       component: AddBookComponent,
       title: 'Add new book',
       data: {
@@ -146,7 +147,7 @@ const routes: Routes = [{
     },
     {
       path: 'add-author',
-      canActivate: [AuthActivate],
+      canActivate: [AuthActivate, AdminActivate],
       component: AddAuthorComponent,
       title: 'Add new author',
       data: {
