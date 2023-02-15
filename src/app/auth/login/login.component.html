@@ -8,12 +8,12 @@
         </div>
 
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" ngModel #password="ngModel" required minlength="4">
+        <input type="password" placeholder="Enter Password" name="password" ngModel #password="ngModel" required minlength="5">
         <div class="alert alert-danger" *ngIf="password.errors && password.dirty && password.touched">
             Password should be at least 5 characters.
         </div>
 
-        <div class="alert alert-danger" *ngIf="attemptFailed">
+        <div class="alert alert-danger" *ngIf="attemptFailed && username.untouched && password.untouched">
             Incorrect email or password.
         </div>
 

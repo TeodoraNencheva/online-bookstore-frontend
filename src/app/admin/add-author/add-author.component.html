@@ -2,25 +2,22 @@
 
     <div class="container">
         <label for="firstName"><b>First name</b></label>
-        <input type="text" placeholder="First name" name="firstName" ngModel #firstName="ngModel" required>
-        <div class="alert alert-danger" *ngIf="firstName.errors && firstName.dirty && firstName.touched">
-            Please enter a valid first name.
-        </div>
+        <input type="text" placeholder="First name" name="firstName" ngModel #firstName="ngModel">
 
         <label for="lastName"><b>Last name</b></label>
-        <input type="text" placeholder="Last name" name="lastName" ngModel #lastName="ngModel" required>
+        <input type="text" placeholder="Last name" name="lastName" ngModel #lastName="ngModel" required pattern="\w{2,30}">
         <div class="alert alert-danger" *ngIf="lastName.errors && lastName.dirty && lastName.touched">
-            Please enter a valid last name.
+            Last name is required and should be between 2 and 30 symbols.
         </div>
 
         <label for="biography"><b>Biography</b></label>
         <textarea placeholder="Biography" name="biography" ngModel #biography="ngModel" required></textarea>
         <div class="alert alert-danger" *ngIf="biography.errors && biography.dirty && biography.touched">
-            Please enter a valid biography.
+            Biography is required.
         </div>
 
         <label for="email"><b>Picture</b></label>
-        <input type="file" placeholder="Picture" name="picture" ngModel #picture="ngModel"
+        <input type="file" placeholder="Picture" name="picture" ngModel #picture="ngModel" required
             (change)="selectPicture($event)"><br>
         <div class="alert alert-danger" *ngIf="picture.errors && picture.dirty && picture.touched">
             Please select a picture.

@@ -4,7 +4,7 @@
         <label for="email"><b>Title</b></label>
         <input type="text" placeholder="Title" name="title" ngModel #title="ngModel" required>
         <div class="alert alert-danger" *ngIf="title.errors && title.dirty && title.touched">
-            Please enter a valid title.
+            Title is required.
         </div>
 
         <label for="email"><b>Author</b></label>
@@ -30,24 +30,24 @@
             #yearOfPublication="ngModel" required>
         <div class="alert alert-danger"
             *ngIf="yearOfPublication.errors && yearOfPublication.dirty && yearOfPublication.touched">
-            Please enter a valid year of publication.
+            Year of publication is required.
         </div>
 
         <label for="email"><b>Price</b></label>
-        <input type="number" placeholder="Price" name="price" ngModel #price="ngModel" required>
+        <input type="number" placeholder="Price" name="price" ngModel #price="ngModel" required min="1">
         <div class="alert alert-danger" *ngIf="price.errors && price.dirty && price.touched">
-            Please enter a valid price.
+            Price is required and should be a positive number.
         </div>
 
 
         <label for="email"><b>Summary</b></label>
         <textarea placeholder="Summary" name="summary" ngModel #summary="ngModel" required></textarea>
         <div class="alert alert-danger" *ngIf="summary.errors && summary.dirty && summary.touched">
-            Please enter a valid summary.
+            Summary is required.
         </div>
 
         <label for="email"><b>Picture</b></label>
-        <input type="file" placeholder="Picture" name="picture" ngModel #picture="ngModel"
+        <input type="file" placeholder="Picture" name="picture" ngModel #picture="ngModel" required
             (change)="selectPicture($event)"><br>
         <div class="alert alert-danger" *ngIf="picture.errors && picture.dirty && picture.touched">
             Please select a picture.
