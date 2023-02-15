@@ -11,6 +11,7 @@ import { AuthorsComponent } from './author/authors/authors.component';
 import { BookComponent } from './book/book/book.component';
 import { BooksComponent } from './book/books/books.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
+import { AuthActivate } from './shared/guards/auth.activate';
 import { GenreTitleResolver } from './shared/resolvers/genre-title-resolver';
 import { CartComponent } from './user/cart/cart.component';
 import { OrderComponent } from './user/order/order.component';
@@ -64,21 +65,37 @@ const routes: Routes = [{
     {
       path: 'login',
       component: LoginComponent,
-      title: 'Login'
+      title: 'Login',
+      canActivate: [AuthActivate],
+      data: {
+        loginRequired: false
+      }
     },
     {
       path: 'logout',
-      component: LogoutComponent
+      canActivate: [AuthActivate],
+      component: LogoutComponent,
+      data: {
+        loginRequired: true
+      }
     },
     {
       path: 'register',
+      canActivate: [AuthActivate],
       component: RegisterComponent,
-      title: 'Register'
+      title: 'Register',
+      data: {
+        loginRequired: false
+      }
     },
     {
       path: 'register-verify',
+      canActivate: [AuthActivate],
       component: VerificationComponent,
-      title: 'Verify registration'
+      title: 'Verify registration',
+      data: {
+        loginRequired: false
+      }
     }
   ]
 },
@@ -87,19 +104,31 @@ const routes: Routes = [{
   children: [
     {
       path: 'cart',
+      canActivate: [AuthActivate],
       component: CartComponent,
-      title: 'My cart'
+      title: 'My cart',
+      data: {
+        loginRequired: true
+      }
     },
     {
       path: 'orders',
+      canActivate: [AuthActivate],
       pathMatch: 'full',
       component: OrdersComponent,
-      title: 'My orders'
+      title: 'My orders',
+      data: {
+        loginRequired: true
+      }
     },
     {
       path: 'orders/:id/details',
+      canActivate: [AuthActivate],
       component: OrderComponent,
-      title: 'Order details'
+      title: 'Order details',
+      data: {
+        loginRequired: true
+      }
     }
   ]
 },
@@ -108,13 +137,21 @@ const routes: Routes = [{
   children: [
     {
       path: 'add-book',
+      canActivate: [AuthActivate],
       component: AddBookComponent,
-      title: 'Add new book'
+      title: 'Add new book',
+      data: {
+        loginRequired: true
+      }
     },
     {
       path: 'add-author',
+      canActivate: [AuthActivate],
       component: AddAuthorComponent,
-      title: 'Add new author'
+      title: 'Add new author',
+      data: {
+        loginRequired: true
+      }
     }
   ]
 },

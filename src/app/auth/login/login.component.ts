@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
 import { HeaderService } from 'src/app/core/services/header.service';
 
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private contentService: ContentService,
     private headerService: HeaderService,
-    private router: Router) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.headerService.setTitle('Login');
   }
 
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
       next: response => {
         sessionStorage.setItem('jwt', response.token);
         sessionStorage.setItem('role', response.role);
-        this.router.navigate(['/']);
+        const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+        this.router.navigate([returnUrl]);
       },
       error: () => {
         this.attemptFailed = true;
