@@ -1,4 +1,3 @@
-About
 Angular application using the Spring Boot backend from the online-bookstore-backend repository (https://github.com/TeodoraNencheva/online-bookstore-backend).
 
 To login into user's go to https://online-bookstore-dbdef.web.app/auth/login (or http://localhost:4200/auth/login if running the app locally) with either of these:
