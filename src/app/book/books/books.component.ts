@@ -18,6 +18,7 @@ export class BooksComponent implements OnInit {
   size = 8;
   page = 0;
   authorId: number | undefined = undefined;
+  fetchingError = false;
 
   constructor(private contentService: ContentService,
     private activatedRoute: ActivatedRoute,
@@ -55,7 +56,10 @@ export class BooksComponent implements OnInit {
   fetchBooks(genre: string, size: number, page: number, authorId: number | undefined): void {
     if (genre) {
       this.contentService.loadBooksByGenre(genre, size, page)
-        .subscribe(books => this.books = books);
+        .subscribe({
+          next: books => this.books = books,
+          error: () => this.fetchingError = true
+        });
     } else if (authorId) {
       this.contentService.loadBooksByAuthor(authorId)
         .subscribe({
@@ -73,7 +77,10 @@ export class BooksComponent implements OnInit {
     }
     else {
       this.contentService.loadAllBooks(size, page)
-        .subscribe(books => this.books = books);
+        .subscribe({
+          next: books => this.books = books,
+          error: () => this.fetchingError = true
+        });
     }
   }
 
