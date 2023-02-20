@@ -13,6 +13,7 @@ import { IBookDetails } from 'src/app/shared/interfaces/book';
 export class BookComponent implements OnInit {
   book: IBookDetails | undefined;
   bookAdded = false;
+  fetchingError = false;
   get isLoggedIn() {
     return this.authService.isLogged;
   }
@@ -31,7 +32,10 @@ export class BookComponent implements OnInit {
   fetchBook(): void {
     this.book = undefined;
     const id = this.activatedRoute.snapshot.params['bookId'];
-    this.contentService.loadBook(id).subscribe(book => this.book = book);
+    this.contentService.loadBook(id).subscribe({
+      next: book => this.book = book,
+      error: () => this.fetchingError = true
+    });
   }
 
   decreaseQuantity(input: HTMLInputElement) {

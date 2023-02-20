@@ -15,6 +15,7 @@ export class AuthorsComponent implements OnInit {
   isLast = false;
   size = 4;
   page = 0;
+  fetchingError = false;
 
   constructor(private contentService: ContentService,
     private activatedRoute: ActivatedRoute,
@@ -42,7 +43,10 @@ export class AuthorsComponent implements OnInit {
   }
 
   fetchAuthors() {
-    this.contentService.loadAuthors(this.size, this.page).subscribe(authors => this.authors = authors);
+    this.contentService.loadAuthors(this.size, this.page).subscribe({
+      next: authors => this.authors = authors,
+      error: () => this.fetchingError = true
+    });
   }
 
   navigateToPrevious() {

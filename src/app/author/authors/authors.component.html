@@ -1,23 +1,31 @@
-<div *ngIf="authors?.length == 0" class="w3-row w3-grayscale" >
+<app-loader *ngIf="!authors && !fetchingError"></app-loader>
+
+<div *ngIf="fetchingError">Error loading authors</div>
+
+<div *ngIf="authors?.length == 0" class="w3-row w3-grayscale">
     <div class="w3-col l3 s6">
         <p>No authors found</p>
     </div>
 </div>
 
-<div *ngIf="authors" class="w3-row" style="display: flex; flex-wrap: wrap">
-    <div *ngFor="let author of authors" class="w3-col l6 s6" style="margin-bottom: 30px;">
-        <div class="w3-container">
-            <div class="w3-display-container">
-                <img [src]="author.picture" style="width:100%;">
-                <div class="w3-display-middle w3-display-hover">
-                    <a [routerLink]="['/authors', author.id]" class="w3-button w3-black">Details</a>
+<div *ngIf="authors">
+    <div class="w3-row" style="display: flex; flex-wrap: wrap">
+        <div *ngFor="let author of authors" class="w3-col l6 s6" style="margin-bottom: 30px;">
+            <div class="w3-container">
+                <div class="w3-display-container">
+                    <img [src]="author.picture" style="width:100%;">
+                    <div class="w3-display-middle w3-display-hover">
+                        <a [routerLink]="['/authors', author.id]" class="w3-button w3-black">Details</a>
+                    </div>
                 </div>
+                <p><a [routerLink]="['/authors', author.id]">{{author.fullName}}</a></p>
+                <p><a [routerLink]="['/books']" [queryParams]="{authorId: author.id}">Books by {{author.fullName}}</a>
+                </p>
             </div>
-            <p><a [routerLink]="['/authors', author.id]">{{author.fullName}}</a></p>
-            <p><a [routerLink]="['/books']" [queryParams]="{authorId: author.id}">Books by {{author.fullName}}</a></p>
         </div>
     </div>
-</div>
 
-<button (click)="navigateToPrevious()" [disabled]="isFirst" class="w3-button w3-black">Previous</button>
-<button (click)="navigateToNext()" [disabled]="isLast" class="w3-button w3-black">Next</button>
+    <button (click)="navigateToPrevious()" [disabled]="isFirst" class="w3-button w3-black">Previous</button>
+    <button (click)="navigateToNext()" [disabled]="isLast" class="w3-button w3-black">Next</button>
+
+</div>

@@ -1,29 +1,36 @@
-<div class="w3-row w3-padding-64" id="about">
-    <div class="w3-col m6 w3-padding-large w3-hide-small">
-        <img [src]="book?.picture" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600"
-            height="750">
-    </div>
+<app-loader *ngIf="!book && !fetchingError"></app-loader>
 
-    <div class="w3-col m6 w3-padding-large">
-        <h1 class="w3-center">{{book?.title}}</h1><br>
-        <h5 class="w3-center">By <a [routerLink]="['/authors', book?.author?.id]">{{book?.author?.fullName}}</a></h5>
-        <h5 class="w3-center">Genre: <a [routerLink]="['/books', book?.genre]">{{book?.genre}}</a></h5>
-        <h5 class="w3-center">Year of publication: {{book?.yearOfPublication}}</h5>
-        <h5 class="w3-center">Price: {{book?.price}}$</h5>
-        <div class="w3-center" *ngIf="isLoggedIn" id="buy">
-            <div>
-                <button (click)="decreaseQuantity(quantity)">-</button>
-                <input type="number" value="1" min="1" #quantity>
-                <button (click)="increaseQuantity(quantity)">+</button>
+<div *ngIf="fetchingError">Error loading book</div>
+
+<div *ngIf="book">
+    <div class="w3-row w3-padding-64" id="about">
+        <div class="w3-col m6 w3-padding-large w3-hide-small">
+            <img [src]="book.picture" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600"
+                height="750">
+        </div>
+
+        <div class="w3-col m6 w3-padding-large">
+            <h1 class="w3-center">{{book.title}}</h1><br>
+            <h5 class="w3-center">By <a [routerLink]="['/authors', book.author.id]">{{book.author.fullName}}</a>
+            </h5>
+            <h5 class="w3-center">Genre: <a [routerLink]="['/books', book.genre]">{{book.genre}}</a></h5>
+            <h5 class="w3-center">Year of publication: {{book.yearOfPublication}}</h5>
+            <h5 class="w3-center">Price: {{book.price}}$</h5>
+            <div class="w3-center" *ngIf="isLoggedIn" id="buy">
+                <div>
+                    <button (click)="decreaseQuantity(quantity)">-</button>
+                    <input type="number" value="1" min="1" #quantity>
+                    <button (click)="increaseQuantity(quantity)">+</button>
+                </div>
+                <button (click)="addToCart(book.id, quantity.value)">Add to cart</button>
             </div>
-            <button (click)="addToCart(book?.id, quantity.value)">Add to cart</button>
-        </div>
 
-        <div class="alert alert-success alert-dismissible" *ngIf="bookAdded" #alert>
-            <strong>Success!</strong> This alert box could indicate a successful or positive action.
-            <p (click)="closeAlert()">X</p>
-        </div>
+            <div class="alert alert-success alert-dismissible" *ngIf="bookAdded" #alert>
+                <strong>Success!</strong> This alert box could indicate a successful or positive action.
+                <p (click)="closeAlert()">X</p>
+            </div>
 
-        <p class="w3-large">{{book?.summary}}</p>
+            <p class="w3-large">{{book.summary}}</p>
+        </div>
     </div>
 </div>

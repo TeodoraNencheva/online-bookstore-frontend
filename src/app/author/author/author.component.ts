@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContentService } from 'src/app/core/services/content.service';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { IAuthorDetails } from 'src/app/shared/interfaces/author';
@@ -11,6 +11,7 @@ import { IAuthorDetails } from 'src/app/shared/interfaces/author';
 })
 export class AuthorComponent implements OnInit {
   author: IAuthorDetails | undefined;
+  fetchingError = false;
 
   constructor(private contentService: ContentService,
     private headerService: HeaderService,
@@ -24,7 +25,10 @@ export class AuthorComponent implements OnInit {
 
   fetchAuthor() {
     const authorId = this.activatedRoute.snapshot.params['authorId'];
-    this.contentService.loadAuthorDetails(authorId).subscribe(author => this.author = author);
+    this.contentService.loadAuthorDetails(authorId).subscribe({
+      next: author => this.author = author,
+      error: () => this.fetchingError = true
+    });
   }
 
 }

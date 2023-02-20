@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorComponent } from './author/author.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ]
 })
 export class AuthorModule { }
